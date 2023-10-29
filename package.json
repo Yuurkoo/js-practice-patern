@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node 3.js", 
+    "start": "node 7.js", 
     "dev": "nodemon --ignore public",
     "1": "nodemon 1",
     "2": "nodemon 2",

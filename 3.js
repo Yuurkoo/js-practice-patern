@@ -11,11 +11,12 @@ class Customer {
   constructor(email) {
     this.email = email;
   }
+
   /**
    * Метод відправки повідомлення клієнту по електронній пошті.Приймає message - повідомлення,та виводить в консоль ${this.email} ${message}.
    */
   sendEmail(message) {
-    return `${this.email} ${message}`;
+    console.log(`${this.email} ${message}`);
   }
 }
 
@@ -43,6 +44,7 @@ class Store {
     this.name = name;
     this.customers = [];
   }
+
   /**
    * Метод subscribe для підписки клієнта на магазин. Приймає customer - Клієнт, який підписується.
    * Після виклику цього методу, клієнт буде отримувати повідомлення про нові продукти, через push додаємо клієнта до масиву.
@@ -50,6 +52,7 @@ class Store {
   subscribe(customer) {
     this.customers.push(customer);
   }
+
   /**
    * Метод unsubscribe для відписки клієнта від магазину.Приймає customer - Клієнт, який відписується.
    * Після виклику цього методу, клієнт більше не буде отримувати повідомлення про нові продукти, через filter прибираємо клієнта з масиву.
@@ -57,6 +60,7 @@ class Store {
   unsubscribe(customer) {
     this.customers = this.customers.filter((c) => c !== customer);
   }
+
   /**
    * Метод createProduct для створення нового продукту в магазині.Приймає name - Назва нового продукту.
    * Після виклику цього методу, новий продукт буде створено, а всі підписники отримають про це повідомлення через sendNotify.
@@ -65,17 +69,14 @@ class Store {
     const product = new Product(name);
     this.sendNotify(product);
   }
+
   /**
    * Метод для відправки повідомлень всім підписникам про новий продукт.Приймає product - Продукт, про який відправляється повідомлення.
    * Новий продукт "${product.name}" в магазині ${this.name}! за допомогою sendEmail.
    */
   sendNotify(product) {
-    const message = `Новий продукт "${product.name}" в магазині ${this.name}!`;
-    this.sendEmailToCustomers(product, message);
-  }
-  // За допомогою forEach перебираємо масив customers
-  // Для кожного елементу масиву викликаємо метод sendEmail з рядком `Новий продукт "${product.name}" в магазині ${this.name}!`
-  sendEmailToCustomers(product) {
+    // За допомогою forEach перебираємо масив customers
+    // Для кожного елементу масиву викликаємо метод sendEmail з рядком `Новий продукт "${product.name}" в магазині ${this.name}!`
     this.customers.forEach((customer) => {
       customer.sendEmail(
         `Новий продукт "${product.name}" в магазині ${this.name}!`
@@ -85,7 +86,6 @@ class Store {
 }
 
 console.log("Завдання 3 ====================================");
-// Після виконання розкоментуйте код нижче
 
 const store = new Store("IT Supermarket");
 
@@ -102,5 +102,3 @@ store.createProduct("Новий ноутбук");
 store.unsubscribe(customer1);
 
 store.createProduct("Бездротові навушники");
-
-console.log("test");
